@@ -1,0 +1,46 @@
+﻿<Page x:Class="WorkshopApp.Views.Pages.Auth.SignInPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="Авторизация">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock FontSize="24" FontWeight="Bold" Text="Авторизация"></TextBlock>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label FontSize="16" Width="75">Логин:</Label>
+                    <TextBox x:Name="Login" FontSize="16" Width="150"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label FontSize="16" Width="75">Пароль:</Label>
+                    <PasswordBox x:Name="Password" FontSize="16" Width="150"></PasswordBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button x:Name="BtnEntry" Click="BtnEntryClick" Content="Войти в систему" Style="{StaticResource BaseButton}" />
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 5 0 0">
+                    <TextBlock>
+                        <Hyperlink x:Name="HLinkRegistraion" 
+                                   Click="HLinkRegistraionClick" >
+                        Регистрация
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

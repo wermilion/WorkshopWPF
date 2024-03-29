@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopApp", "WorkshopApp\WorkshopApp.csproj", "{366F0D83-5526-4B68-811F-0A405A54DC6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{EA2B7527-8898-4389-B38F-CDB819736EDC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{366F0D83-5526-4B68-811F-0A405A54DC6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{366F0D83-5526-4B68-811F-0A405A54DC6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{366F0D83-5526-4B68-811F-0A405A54DC6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{366F0D83-5526-4B68-811F-0A405A54DC6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11F3E7DE-1FE4-44E8-A8AD-80B9274E0F5F}
+	EndGlobalSection
+EndGlobal

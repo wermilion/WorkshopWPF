@@ -1,0 +1,26 @@
+﻿<Window x:Class="WorkshopApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkshopApp"
+        mc:Ignorable="d"
+        Title="{Binding ElementName=WorkshopFrame, Path=Content.Title, Converter={StaticResource TitleConverter}}" 
+        Height="500" 
+        Width="850" 
+        Loaded="WindowLoaded"
+        WindowStartupLocation="CenterScreen"
+        Background="Teal">
+
+    <Grid>
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="10" ShadowDepth="1"/>
+        </Grid.Effect>
+
+        <Border Background="White" BorderBrush="Transparent" CornerRadius="20" Margin="10">
+            <Frame x:Name="WorkshopFrame" 
+                   NavigationUIVisibility="Hidden" 
+                   ContentRendered="WorkshopFrameContendRendered" />
+        </Border>
+    </Grid>
+</Window>
