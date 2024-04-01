@@ -33,24 +33,73 @@ namespace WorkshopApp.Controllers
         /// <param name="data">Данные для создания заказа</param>
         /// <returns>Созданного пользователя</returns>
         /// <exception cref="Exception">Возникает, если возникла ошибка при создании заказа</exception>
-        public static Order Create(Dictionary<string, string> data)
+        public static Order Create(Dictionary<string, dynamic> data)
         {
             try
             {
                 Order order = new Order
                 {
-                    UserID = int.Parse(data["UserID"]),
+                    UserID = data["UserID"],
                     TypeID = int.Parse(data["TypeID"]),
                     StatusID = int.Parse(data["StatusID"]),
-                    Date = DateTime.Parse(data["Date"]),
-                    CountServices = int.Parse(data["CountServices"]),
-                    TotalPrice = decimal.Parse(data["TotalPrice"]),
+                    Date = data["Date"],
+                    CountServices = data["CountServices"],
+                    TotalPrice = (decimal)data["TotalPrice"]
                 };
 
                 Connection.db.Orders.Add(order);
                 Connection.db.SaveChanges();
 
                 return order;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Обновляет заказ
+        /// </summary>
+        /// <param name="data">Данные для обновления заказа</param>
+        /// <returns>Созданного пользователя</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при создании заказа</exception>
+        public static Order Update(int orderId, Dictionary<string, dynamic> data)
+        {
+            try
+            {
+                Order order = Connection.db.Orders.FirstOrDefault(x => x.OrderID == orderId);
+
+                if (order == null)
+                {
+                    throw new Exception($"Заказ с ID = {orderId} не был найден");
+                }
+
+                order.TypeID = int.Parse(data["TypeID"]);
+                order.StatusID = int.Parse(data["StatusID"]);
+                order.Date = data["Date"];
+
+                Connection.db.SaveChanges();
+
+                return order;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Поиск заказа по `id`
+        /// </summary>
+        /// <param name="orderId">Идентификатор заказа</param>
+        /// <returns>Найденный заказа</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при поиске заказа</exception>
+        public static Order Find(int orderId)
+        {
+            try
+            {
+                return Connection.db.Orders.Find(orderId) as Order;
             }
             catch (Exception ex)
             {
@@ -68,11 +117,11 @@ namespace WorkshopApp.Controllers
         {
             try
             {
-                User user = Connection.db.Users.FirstOrDefault(x => x.UserID == id);
+                Order order = Connection.db.Orders.FirstOrDefault(x => x.OrderID == id);
 
-                if (user != null)
+                if (order != null)
                 {
-                    Connection.db.Users.Remove(user);
+                    Connection.db.Orders.Remove(order);
                     Connection.db.SaveChanges();
                     return true;
                 }

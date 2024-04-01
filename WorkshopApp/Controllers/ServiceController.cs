@@ -55,6 +55,55 @@ namespace WorkshopApp.Controllers
         }
 
         /// <summary>
+        /// Обновляет доп. услугу
+        /// </summary>
+        /// <param name="serviceId">Идентификатор доп. услуги, которую нужно обновить</param>
+        /// <param name="data">Данные для обновления доп. услуги</param>
+        /// <returns>Созданного пользователя</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при обновлении доп. услуги</exception>
+        public static Service Update(int serviceId, Dictionary<string, string> data)
+        {
+            try
+            {
+                Service service = Connection.db.Services.FirstOrDefault(x => x.ServiceID == serviceId);
+
+                if (service == null)
+                {
+                    throw new Exception($"Доп. услуга с ID = {serviceId} не был найден");
+                }
+
+                service.Name = data["Name"];
+                service.Price = decimal.Parse(data["Price"]);
+
+                Connection.db.SaveChanges();
+
+                return service;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Поиск доп. услуги по `id`
+        /// </summary>
+        /// <param name="serviceId">Идентификатор доп. услуги</param>
+        /// <returns>Найденную доп. услугу</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при поиске доп. услуги</exception>
+        public static Service Find(int serviceId)
+        {
+            try
+            {
+                return Connection.db.Services.Find(serviceId) as Service;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Удаляет доп. услугу из базы данных по идентификатору
         /// </summary>
         /// <param name="id">Идентификатор доп. услуги, которую нужно удалить</param>

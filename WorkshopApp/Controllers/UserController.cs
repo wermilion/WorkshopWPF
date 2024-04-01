@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using WorkshopApp.Models;
 
 namespace WorkshopApp.Controllers
@@ -60,6 +63,60 @@ namespace WorkshopApp.Controllers
         }
 
         /// <summary>
+        /// Обновляет пользователя
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя, которого нужно обновить</param>
+        /// <param name="data">Данные для обновления пользователя</param>
+        /// <returns>Созданного пользователя</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при обновлении пользователя</exception>
+        public static User Update(int userId, Dictionary<string, string> data)
+        {
+            try
+            {
+                User user = Connection.db.Users.FirstOrDefault(x => x.UserID == userId);
+
+                if (user == null)
+                {
+                    throw new Exception($"Пользователь с ID = {userId} не был найден");
+                }
+
+                user.Name = data["Name"];
+                user.Surname = data["Surname"];
+                user.Patronimyc = data["Patronymic"];
+                user.Phone = data["Phone"];
+                user.Login = data["Login"];
+                user.Password = data["Password"];
+                user.RoleID = int.Parse(data["RoleID"]);
+
+                Connection.db.SaveChanges();
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Поиск пользователя по `id`
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <returns>Найденного пользователя</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при поиске пользователя</exception>
+        public static User Find(int userId)
+        {
+            try
+            {
+                return Connection.db.Users.Find(userId) as User;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Удаляет пользователя из базы данных по идентификатору
         /// </summary>
         /// <param name="id">Идентификатор пользователя, которого нужно удалить</param>
@@ -73,8 +130,25 @@ namespace WorkshopApp.Controllers
 
                 if (user != null)
                 {
+                    using (var context = new WorkshopEntities())
+                    {
+                        bool orders = context.Orders.Any(x => x.UserID == user.UserID);
+
+                        if (orders)
+                        {
+                            MessageBox.Show("Невозможно удалить запись так как она связана с заказами", "Ошибка удаления", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
+                    }
+
                     Connection.db.Users.Remove(user);
                     Connection.db.SaveChanges();
+
+                    if (user == App.authUser)
+                    {
+                        Application.Current.Shutdown();
+                    }
+
                     return true;
                 }
 

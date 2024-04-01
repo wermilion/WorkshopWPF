@@ -54,6 +54,54 @@ namespace WorkshopApp.Controllers
         }
 
         /// <summary>
+        /// Обновляет тип заказа
+        /// </summary>
+        /// <param name="typeID">Идентификатор типа заказа, который нужно обновить</param>
+        /// <param name="data">Данные для обновления типа заказа</param>
+        /// <returns>Созданного пользователя</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при обновлении типа заказа</exception>
+        public static Models.Type Update(int typeID, Dictionary<string, string> data)
+        {
+            try
+            {
+                Models.Type type = Connection.db.Types.FirstOrDefault(x => x.TypeID == typeID);
+
+                if (type == null)
+                {
+                    throw new Exception($"Тип заказа с ID = {typeID} не был найден");
+                }
+
+                type.Name = data["Name"];
+
+                Connection.db.SaveChanges();
+
+                return type;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Поиск типа заказа по `id`
+        /// </summary>
+        /// <param name="typeId">Идентификатор типа заказа</param>
+        /// <returns>Найденный тип заказа</returns>
+        /// <exception cref="Exception">Возникает, если возникла ошибка при поиске типа заказа</exception>
+        public static Models.Type Find(int typeId)
+        {
+            try
+            {
+                return Connection.db.Types.Find(typeId) as Models.Type;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Удаляет тип заказа из базы данных по идентификатору
         /// </summary>
         /// <param name="id">Идентификатор типа заказа, который нужно удалить</param>

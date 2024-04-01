@@ -10,11 +10,8 @@
       Loaded="PageLoaded">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
-
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock FontSize="24" FontWeight="Bold" Text="Регистрация"></TextBlock>
-            </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Text="Регистрация" />
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Имя*"  FontSize="16" Width="100" HorizontalAlignment="Left" />
@@ -46,7 +43,6 @@
             </StackPanel>
 
             <Button x:Name="BtnRegister" Click="BtnRegisterClick" Content="Подтвердить" Style="{StaticResource BaseButton}" Width="120" Margin="0 15 0 0" />
-
         </StackPanel>
     </Grid>
 </Page>

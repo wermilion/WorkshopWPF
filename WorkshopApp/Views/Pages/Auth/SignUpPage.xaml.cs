@@ -19,13 +19,11 @@ namespace WorkshopApp.Views.Pages.Auth
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            var roles = RoleController.Index();
-
             RoleID.DisplayMemberPath = "Name";
             RoleID.SelectedValuePath = "RoleID";
-            RoleID.ItemsSource = roles;
+            RoleID.ItemsSource = RoleController.Index();
 
-            RoleID.SelectedValue = roles.First(x => x.Name == "Клиент").RoleID;
+            RoleID.SelectedValue = RoleController.Index().First(x => x.Name == "Клиент").RoleID;
 
             RoleID.IsEnabled = false;
 

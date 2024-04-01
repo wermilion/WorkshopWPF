@@ -41,12 +41,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-
         <TabControl SelectionChanged="TabControlSelectionChanged" Grid.Row="0" BorderThickness="0">
             <TabItem x:Name="TabUsers" Header="Пользователи">
-                <DataGrid x:Name="DataUsers" AutoGenerateColumns="False">
+                <DataGrid x:Name="DataUsers" SelectionChanged="DataGridSelectionChanged" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding UserID}" Visibility="Collapsed"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding UserID}" Visibility="Collapsed" />
                         <DataGridTextColumn IsReadOnly="True" Header="Имя" Binding="{Binding Name}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Фамилия" Binding="{Binding Surname}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Телефон" Binding="{Binding Phone}" />
@@ -55,7 +54,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem x:Name="TabOrders" Header="Заказы">
-                <DataGrid x:Name="DataOrders" AutoGenerateColumns="False">
+                <DataGrid x:Name="DataOrders" SelectionChanged="DataGridSelectionChanged" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding OrderID}" Visibility="Collapsed"/>
                         <DataGridTextColumn IsReadOnly="True" Header="Имя клиента" Binding="{Binding User.Name}" />
@@ -68,7 +67,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem x:Name="TabTypes" Header="Типы">
-                <DataGrid x:Name="DataTypes" AutoGenerateColumns="False">
+                <DataGrid x:Name="DataTypes" SelectionChanged="DataGridSelectionChanged" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding TypeID}" Visibility="Collapsed"/>
                         <DataGridTextColumn IsReadOnly="True" Header="Название" Binding="{Binding Name}" />
@@ -76,17 +75,19 @@
                 </DataGrid>
             </TabItem>
             <TabItem x:Name="TabServices" Header="Доп. услуги">
-                <DataGrid x:Name="DataServices" AutoGenerateColumns="False">
+                <DataGrid x:Name="DataServices" SelectionChanged="DataGridSelectionChanged" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding ServiceID}" Visibility="Collapsed"/>
                         <DataGridTextColumn IsReadOnly="True" Header="Название" Binding="{Binding Name}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Цена" Binding="{Binding Price}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>
 
-        <UniformGrid x:Name="ActionButtons" Grid.Row="1" Columns="2" MinWidth="250" HorizontalAlignment="Center" Margin="0 5">
+        <UniformGrid x:Name="ActionButtons" Grid.Row="1" Columns="3" MinWidth="400" HorizontalAlignment="Center" Margin="0 5">
             <Button x:Name="BtnCreate" Click="BtnCreateClick"  Style="{StaticResource BaseButton}" MaxWidth="90" Content="Создать" Height="32" VerticalAlignment="Top" />
+            <Button x:Name="BtnUpdate" Click="BtnUpdateClick"  Style="{StaticResource BaseButton}" MaxWidth="135" Content="Редактировать" Height="32" VerticalAlignment="Top" />
             <Button x:Name="BtnDelete" Click="BtnDeleteClick"  Style="{StaticResource BaseButton}" MaxWidth="90" Content="Удалить" />
         </UniformGrid>
     </Grid>

@@ -2,13 +2,47 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:WorkshopApp.Views.Pages.Users"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CreateUserPage">
+      Title="Создать/Редактировать пользователя">
 
     <Grid>
-        
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="Header" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Text="Создать пользователя" />
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Имя*"  FontSize="16" Width="100" HorizontalAlignment="Left" />
+                <TextBox x:Name="Name" materialDesign:HintAssist.Hint="Введите имя" FontSize="16" Width="300" HorizontalAlignment="Stretch" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Фамилия*" FontSize="16" Width="100" HorizontalAlignment="Left"/>
+                <TextBox x:Name="Surname" materialDesign:HintAssist.Hint="Введите фамилию" FontSize="16" Width="300" HorizontalAlignment="Left" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Отчество" FontSize="16" Width="100" HorizontalAlignment="Left" />
+                <TextBox x:Name="Patronymic" materialDesign:HintAssist.Hint="Введите отчество" FontSize="16" Width="300" HorizontalAlignment="Left" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Телефон*" FontSize="16" Width="100" HorizontalAlignment="Left" />
+                <TextBox x:Name="Phone" materialDesign:HintAssist.Hint="Введите номер телефона" FontSize="16" Width="300" HorizontalAlignment="Left" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Логин*" FontSize="16" Width="100" HorizontalAlignment="Left" />
+                <TextBox x:Name="Login" materialDesign:HintAssist.Hint="Введите логин" FontSize="16" Width="300" HorizontalAlignment="Left" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Пароль*" FontSize="16" Width="100" HorizontalAlignment="Left" />
+                <PasswordBox x:Name="Password" materialDesign:HintAssist.Hint="Введите пароль" FontSize="16" Width="300" HorizontalAlignment="Left" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Роль*" FontSize="16" Width="100" HorizontalAlignment="Left" />
+                <ComboBox x:Name="RoleID" materialDesign:HintAssist.Hint="Выберите роль" FontSize="16" Width="300" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <Button x:Name="BtnIntrecate" Click="BtnIntrecateClick" Content="Создать" Style="{StaticResource BaseButton}" Width="135" Margin="0 15 0 0" />
+        </StackPanel>
     </Grid>
 </Page>
