@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using WorkshopApp.Controllers;
@@ -47,8 +46,6 @@ namespace WorkshopApp.Views.Pages.Orders
             dynamic services = Services.SelectedItems;
             string typeID = TypeID.SelectedValue != null ? TypeID.SelectedValue.ToString() : string.Empty;
             string statusID = StatusID.SelectedValue != null ? StatusID.SelectedValue.ToString() : string.Empty;
-
-            Debug.WriteLine((Date.GetType(), Date));
 
             double totalPrice = 0;
             foreach (var item in services)

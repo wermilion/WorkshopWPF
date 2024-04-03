@@ -57,9 +57,15 @@ namespace WorkshopApp.Views.Pages
         {
             User authUser = App.authUser;
 
-            if (authUser.RoleID == (int)RoleEnum.INTERN || authUser.RoleID == (int)RoleEnum.CLIENT)
+            if (authUser.RoleID == (int)RoleEnum.INTERN)
             {
                 ActionButtons.Visibility = Visibility.Hidden;
+            }
+
+            if (authUser.RoleID == (int)RoleEnum.CLIENT)
+            {
+                BtnUpdate.Visibility = Visibility.Collapsed;
+                BtnDelete.Visibility = Visibility.Collapsed;
             }
 
             if (authUser.RoleID == (int)RoleEnum.ADMINISTRATOR)
@@ -254,6 +260,15 @@ namespace WorkshopApp.Views.Pages
             if (e.Source is TabControl tabControl)
             {
                 SelectedTabItem = tabControl.SelectedItem as TabItem;
+
+                if (_selectedTabItem.Header.ToString() == "Заказы" && App.authUser.RoleID == (int)RoleEnum.CLIENT)
+                {
+                    BtnCreate.Visibility = Visibility.Visible;
+                }
+                else if (App.authUser.RoleID == (int)RoleEnum.CLIENT)
+                {
+                    BtnCreate.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
