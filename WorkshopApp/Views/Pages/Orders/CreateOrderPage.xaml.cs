@@ -47,11 +47,7 @@ namespace WorkshopApp.Views.Pages.Orders
             string typeID = TypeID.SelectedValue != null ? TypeID.SelectedValue.ToString() : string.Empty;
             string statusID = StatusID.SelectedValue != null ? StatusID.SelectedValue.ToString() : string.Empty;
 
-            double totalPrice = 0;
-            foreach (var item in services)
-            {
-                totalPrice += (double)item.Price;
-            }
+            double totalPrice = CalculateTotalPrice(services);
 
             var data = new Dictionary<string, dynamic>
             {
@@ -83,6 +79,17 @@ namespace WorkshopApp.Views.Pages.Orders
                 var errorMessage = string.Join("\n", errors);
                 MessageBox.Show(errorMessage, "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private double CalculateTotalPrice(dynamic services)
+        {
+            double totalPrice = 0;
+            foreach (var item in services)
+            {
+                totalPrice += (double)item.Price;
+            }
+
+            return totalPrice;
         }
 
         /// <summary>

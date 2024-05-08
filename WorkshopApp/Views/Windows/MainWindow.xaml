@@ -17,7 +17,10 @@
             <DropShadowEffect BlurRadius="10" ShadowDepth="1"/>
         </Grid.Effect>
 
-        <Border Background="White" BorderBrush="Transparent" CornerRadius="20" Margin="10">
+        <Border Background="White" 
+                BorderBrush="Transparent" 
+                CornerRadius="20" 
+                Margin="10">
             <Frame x:Name="WorkshopFrame" 
                    NavigationUIVisibility="Hidden" 
                    ContentRendered="WorkshopFrameContendRendered" />

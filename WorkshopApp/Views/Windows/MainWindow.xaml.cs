@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using WorkshopApp.Views.Pages.Auth;
 
 namespace WorkshopApp
 {
     public partial class MainWindow : Window
     {
-        public bool HeaderVisibility { get; set; } = true;
-
-        public static Page PreviousPage { get; set; }
-
         public MainWindow()
         {
             InitializeComponent();
@@ -21,17 +16,7 @@ namespace WorkshopApp
             WorkshopFrame.NavigationService.Navigate(new SignInPage());
         }
 
-        private void WorkshopFrameContendRendered(object sender, EventArgs e)
-        {
-            /*if (WorkshopFrame.CanGoBack && !((PreviousPage is SignInPage) || (PreviousPage is SignUpPage)))
-            {
-                BtnBack.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BtnBack.Visibility = Visibility.Collapsed;
-            }*/
-        }
+        private void WorkshopFrameContendRendered(object sender, EventArgs e) { }
 
         public void GoBack()
         {

@@ -31,7 +31,6 @@ namespace WorkshopApp.Views.Pages.Auth
 
                 UserController.SignIn(Login.Text.Trim(), Password.Password.Trim());
 
-                MainWindow.PreviousPage = new SignInPage();
                 NavigationService.Navigate(new HomePage());
             }
             catch (Exception ex)
