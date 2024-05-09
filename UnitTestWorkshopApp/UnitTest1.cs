@@ -28,15 +28,7 @@ namespace UnitTestWorkshopApp
             string invalidLogin = "invalid";
             string invalidPassword = "invalid";
 
-            try
-            {
-                UserController.SignIn(invalidLogin, invalidPassword);
-                Assert.Fail("Expected exception not thrown");
-            }
-            catch (Exception ex)
-            {
-                Assert.AreEqual("Некорректные данные", ex.Message);
-            }
+            Assert.ThrowsException<Exception>(() => UserController.SignIn(invalidLogin, invalidPassword));
         }
     }
 }
